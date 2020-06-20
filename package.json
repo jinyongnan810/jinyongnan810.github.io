@@ -1,0 +1,36 @@
+{
+    "name": "Kins-Page",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.config.js",
+    "scripts": {
+        "dev": "webpack --mode development --watch ./kins-page/index.js --output ./kins-page//main.js",
+        "build": "webpack --mode production ./kins-page/index.js --output ./kins-page/main.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jinyongnan810/jinyongnan810.github.io.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jinyongnan810/jinyongnan810.github.io/issues"
+    },
+    "homepage": "https://github.com/jinyongnan810/jinyongnan810.github.io#readme",
+    "devDependencies": {
+        "@babel/core": "^7.8.7",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/preset-env": "^7.8.7",
+        "@babel/preset-react": "^7.8.3",
+        "babel-loader": "^8.0.6",
+        "prop-types": "^15.7.2",
+        "webpack": "^4.42.0",
+        "webpack-cli": "^3.3.11"
+    },
+    "dependencies": {
+        "highlight.js": "^10.1.1",
+        "markdown-it": "^11.0.0",
+        "markdown-it-highlightjs": "^3.1.0"
+    }
+}
