@@ -12,7 +12,8 @@ const host = 'http://csc-conference.southeastasia.cloudapp.azure.com:8000'
 // vars
 let memos = []
 let memoEls = []
-const showFirst = 20
+// get initial memo
+const showFirst = +(window.location.search.replace(/\?id=/, ''))
 
 let md = new MarkdownIt({
     html: true,
