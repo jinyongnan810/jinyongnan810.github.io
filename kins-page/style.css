@@ -27,6 +27,9 @@ h1:not(.site-title),h2,h3,h4,h5 {
 li {
   list-style-image: url("./pen.png");
 }
+a {
+  color: goldenrod;
+}
 .site-title {
   font-family: 'Piedra', cursive;
   margin: 0;
@@ -118,6 +121,7 @@ pre {
   color: #fff;
   white-space: pre-wrap;
   padding: 5px 10px;
+  border-radius: 2px;
 }
 img {
   display: block;
