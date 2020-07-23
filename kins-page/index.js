@@ -6,12 +6,31 @@ const sidebarEl = document.getElementById('sidebar')
 const contentEl = document.getElementById('content')
 const siteTitleEl = document.getElementById('site-title')
 
+const themeEl = document.getElementById("theme")
+
+
 // consts
 const host = 'http://csc-conference.southeastasia.cloudapp.azure.com:8000'
 
 // vars
 let memos = []
 let memoEls = []
+
+// init theme
+const checkTheme = () => {
+    const date = new Date()
+    const hour = date.getHours()
+    if (hour > 6 && hour < 18) {
+        themeEl.href = "./kins-page/light.css"
+    } else {
+        themeEl.href = "./kins-page/dark.css"
+    }
+    setTimeout(() => {
+        checkTheme()
+    }, 60000);
+}
+checkTheme()
+
 // get initial memo
 const showFirst = +(window.location.search.replace(/\?id=/, ''))
 
