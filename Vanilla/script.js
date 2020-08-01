@@ -21,6 +21,7 @@ const projects = [
     { "name": "Relaxer", "link": "Relaxer", "img": "./imgs/relaxer.png" },
     { "name": "Meal Search", "link": "Meal-Search", "img": "./imgs/meals-search.jpg" },
     { "name": "Sortable List", "link": "Sortable-List", "img": "./imgs/sortable-list.png" },
+    { "name": "Mine Sweeper", "link": "Mine-Sweeper", "img": "./imgs/mine-sweeper.png" },
 ]
 
 const addProjectToDOM = () => {
