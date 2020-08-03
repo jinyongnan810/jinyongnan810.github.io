@@ -22,6 +22,7 @@ const projects = [
     { "name": "Meal Search", "link": "Meal-Search", "img": "./imgs/meals-search.jpg" },
     { "name": "Sortable List", "link": "Sortable-List", "img": "./imgs/sortable-list.png" },
     { "name": "Mine Sweeper", "link": "Mine-Sweeper", "img": "./imgs/mine-sweeper.png" },
+    { "name": "Sass Demo", "link": "Sass-Demo", "img": "./imgs/sass-demo.png" },
 ]
 
 const addProjectToDOM = () => {
