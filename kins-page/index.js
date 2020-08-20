@@ -52,7 +52,9 @@ let md = new MarkdownIt({
 // fetch data
 const fetchData = async () => {
   try {
-    const res = await fetch(`${host}/publicApi`);
+    const res = await fetch(
+      `https://cors-anywhere.herokuapp.com/${host}/publicApi`
+    );
     memos = await res.json();
     memos = memos.sort((a, b) => new Date(b.update_at) - new Date(a.update_at));
   } catch (error) {
