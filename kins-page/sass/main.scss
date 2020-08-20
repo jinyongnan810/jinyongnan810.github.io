@@ -1,25 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Piedra&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Piedra&display=swap");
+@import "config";
+@include theme(light, $bg-color, $text-color, $bg-img, $h-box-shadow);
+@include theme(
+  dark,
+  $dark-bg-color,
+  $dark-text-color,
+  $dark-bg-img,
+  $dark-h-box-shadow
+);
 * {
   box-sizing: border-box;
 }
 body {
-  background-color: var(--bg-color);
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--text-color);
 }
-h1:not(.site-title),h2,h3,h4,h5 {
+h1:not(.site-title),
+h2,
+h3,
+h4,
+h5 {
   /* border-bottom: 1px solid #000;
   border-left: 1px solid #000; */
   width: fit-content;
-  box-shadow: var(--h-box-shadow);
   padding: 5px 10px;
 }
 li {
@@ -29,7 +37,7 @@ a {
   color: goldenrod;
 }
 .site-title {
-  font-family: 'Piedra', cursive;
+  font-family: "Piedra", cursive;
   margin: 0;
   position: fixed;
   top: 10px;
@@ -38,17 +46,14 @@ a {
   cursor: pointer;
   z-index: 2;
   box-sizing: 0;
-  color: var(--title-color);
 }
 .header {
   width: 100%;
-  height: var(--header-height);
-  background-image: var(--bg-img);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   text-align: center;
-  line-height: var(--header-height);
+  line-height: $header-height;
   font-size: 100px;
   color: #fff;
 }
@@ -91,13 +96,12 @@ a {
   border: 0;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
-
 }
 .sidebar .title {
   width: 100%;
-  height: var(--title-height);
+  height: $title-height;
   text-align: center;
-  line-height: var(--title-height);
+  line-height: $title-height;
   cursor: pointer;
   transition: all 0.5s ease;
 }
