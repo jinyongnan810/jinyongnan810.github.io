@@ -133,10 +133,17 @@ siteTitleEl.addEventListener('click', () => {
 });
 
 window.addEventListener('scroll', e => {
-  const isMinimum = window.scrollY > 150;
-  const height = isMinimum ? 150 : (300 - window.scrollY);
+  const isMinimum = window.scrollY > 250;
+  const height = isMinimum ? 50 : (300 - window.scrollY);
   headerEl.style.height = `${height}px`;
   headerEl.style.lineHeight = `${height}px`;
+  if (window.scrollY > 175) {
+    const tmp = (300 - window.scrollY) * 0.8;
+    const size = tmp > 35 ? tmp : 35;
+    headerEl.style.fontSize = `${size}px`;
+  } else {
+    headerEl.style.fontSize = `100px`;
+  }
 });
 
 // init
