@@ -1,15 +1,15 @@
-const MarkdownIt = require("markdown-it");
-var hljs = require("highlight.js");
+const MarkdownIt = require('markdown-it');
+var hljs = require('highlight.js');
 // pull doms
-const headerEl = document.getElementById("header");
-const sidebarEl = document.getElementById("sidebar");
-const contentEl = document.getElementById("content");
-const siteTitleEl = document.getElementById("site-title");
+const headerEl = document.getElementById('header');
+const sidebarEl = document.getElementById('sidebar');
+const contentEl = document.getElementById('content');
+const siteTitleEl = document.getElementById('site-title');
 
-const bodyEl = document.getElementById("body");
+const bodyEl = document.getElementById('body');
 
 // consts
-const host = "http://csc-conference.southeastasia.cloudapp.azure.com:8000";
+const host = 'http://csc-conference.southeastasia.cloudapp.azure.com:8000';
 
 // vars
 let memos = [];
@@ -20,9 +20,9 @@ const checkTheme = () => {
   const date = new Date();
   const hour = date.getHours();
   if (hour > 6 && hour < 18) {
-    bodyEl.classList.add("light");
+    bodyEl.classList.add('light');
   } else {
-    bodyEl.classList.add("dark");
+    bodyEl.classList.add('dark');
   }
   setTimeout(() => {
     checkTheme();
@@ -31,20 +31,21 @@ const checkTheme = () => {
 checkTheme();
 
 // get initial memo
-const showFirst = +window.location.search.replace(/\?id=/, "");
+const showFirst = +window.location.search.replace(/\?id=/, '');
 
 let md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight: function (str, lang) {
+  highlight: function(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str).value;
-      } catch (e) {}
+      } catch (e) {
+      }
     }
 
-    return ""; // use external default escaping
+    return '';  // use external default escaping
   },
 });
 
@@ -52,9 +53,8 @@ let md = new MarkdownIt({
 // fetch data
 const fetchData = async () => {
   try {
-    const res = await fetch(
-      `https://cors-anywhere.herokuapp.com/${host}/publicApi`
-    );
+    const res =
+        await fetch(`https://cors-anywhere.herokuapp.com/${host}/publicApi`);
     memos = await res.json();
     memos = memos.sort((a, b) => new Date(b.update_at) - new Date(a.update_at));
   } catch (error) {
@@ -69,21 +69,19 @@ const init = async () => {
 
   memos.forEach((memo, index) => {
     // replace link
-    memo.content = memo.content.replace(
-      /download\?path/g,
-      `${host}/download?path`
-    );
+    memo.content =
+        memo.content.replace(/download\?path/g, `${host}/download?path`);
 
     // create dom
-    const newEl = document.createElement("div");
-    newEl.className = "title";
+    const newEl = document.createElement('div');
+    newEl.className = 'title';
     newEl.id = `title-${memo.id}`;
-    newEl.setAttribute("data-index", index);
+    newEl.setAttribute('data-index', index);
     newEl.innerText = memo.title;
     memoEls.push(newEl);
     sidebarEl.appendChild(newEl);
-    newEl.addEventListener("click", (e) => {
-      setCurrent(memos[+e.target.getAttribute("data-index")]);
+    newEl.addEventListener('click', (e) => {
+      setCurrent(memos[+e.target.getAttribute('data-index')]);
     });
   });
   if (showFirst) {
@@ -102,37 +100,43 @@ const init = async () => {
 const setCurrent = (memo) => {
   headerEl.innerText = memo.title;
   contentEl.innerHTML = md.render(memo.content);
-  const pre = document.querySelector(".current");
-  if (pre) pre.classList.remove("current");
+  const pre = document.querySelector('.current');
+  if (pre) pre.classList.remove('current');
   const current = document.getElementById(`title-${memo.id}`);
-  current.classList.add("current");
+  current.classList.add('current');
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: "smooth",
+    behavior: 'smooth',
   });
 };
 // init renderer
 const initRenderer = () => {
   var defaultRender =
-    md.renderer.rules.link_open ||
-    function (tokens, idx, options, env, self) {
-      return self.renderToken(tokens, idx, options);
-    };
+      md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+        return self.renderToken(tokens, idx, options);
+      };
 
-  md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-    tokens[idx].attrPush(["target", "_blank"]);
+  md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
+    tokens[idx].attrPush(['target', '_blank']);
     return defaultRender(tokens, idx, options, env, self);
   };
 };
 
 // event handlers
-siteTitleEl.addEventListener("click", () => {
+siteTitleEl.addEventListener('click', () => {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: "smooth",
+    behavior: 'smooth',
   });
+});
+
+window.addEventListener('scroll', e => {
+  const isMinimum = window.scrollY > 150;
+  const height = isMinimum ? 150 : (300 - window.scrollY);
+  headerEl.style.height = `${height}px`;
+  headerEl.style.lineHeight = `${height}px`;
 });
 
 // init

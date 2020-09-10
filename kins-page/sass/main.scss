@@ -48,6 +48,9 @@ a {
   box-sizing: 0;
 }
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   background-position: center center;
   background-size: cover;
@@ -63,12 +66,12 @@ a {
   left: 0;
   height: 100vh;
   width: 200px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   overflow: visible;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
   transform: translateX(-200px);
-  transition: transform 0.5s ease;
+  transition: transform $sidebar-transition ease;
 }
 .sidebar {
   width: 100%;
@@ -77,14 +80,19 @@ a {
 }
 .sidebar-container:hover {
   transform: translateX(0);
+  .arrow {
+    i {
+      transform: rotate(180deg);
+    }
+  }
 }
 .sidebar-container:left {
   transform: translateX(-200px);
 }
 .sidebar-container .arrow {
   display: block;
-  background-color: rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
   position: absolute;
   width: 30px;
   height: 100px;
@@ -94,8 +102,12 @@ a {
   right: -30px;
   transform: translateY(-50%);
   border: 0;
-  border-top-right-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  i {
+    transform: rotate(0);
+    transition: transform $sidebar-transition ease;
+  }
 }
 .sidebar .title {
   width: 100%;
@@ -115,6 +127,7 @@ a {
 }
 .content {
   width: 1000px;
+  padding-top: $header-height;
 }
 
 pre {
