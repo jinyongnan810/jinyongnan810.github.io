@@ -9,7 +9,7 @@ const siteTitleEl = document.getElementById('site-title');
 const bodyEl = document.getElementById('body');
 
 // consts
-const host = 'http://csc-conference.southeastasia.cloudapp.azure.com:8000';
+const host = 'https://kins-memo.herokuapp.com/';
 
 // vars
 let memos = [];
@@ -53,8 +53,7 @@ let md = new MarkdownIt({
 // fetch data
 const fetchData = async () => {
   try {
-    const res =
-        await fetch(`https://cors-anywhere.herokuapp.com/${host}/publicApi`);
+    const res = await fetch(`${host}/memmos`);
     memos = await res.json();
     memos = memos.sort((a, b) => new Date(b.update_at) - new Date(a.update_at));
   } catch (error) {
@@ -68,10 +67,6 @@ const init = async () => {
   if (memos.length == 0) return;
 
   memos.forEach((memo, index) => {
-    // replace link
-    memo.content =
-        memo.content.replace(/download\?path/g, `${host}/download?path`);
-
     // create dom
     const newEl = document.createElement('div');
     newEl.className = 'title';
