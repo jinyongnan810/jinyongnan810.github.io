@@ -53,7 +53,7 @@ let md = new MarkdownIt({
 // fetch data
 const fetchData = async () => {
   try {
-    const res = await fetch(`${host}/memos`);
+    const res = await fetch(`${host}memos`);
     memos = await res.json();
     memos = memos.sort((a, b) => new Date(b.update_at) - new Date(a.update_at));
   } catch (error) {
