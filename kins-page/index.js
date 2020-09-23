@@ -55,7 +55,7 @@ const fetchData = async () => {
   try {
     const res = await fetch(`${host}memos`);
     memos = await res.json();
-    memos = memos.sort((a, b) => new Date(b.update_at) - new Date(a.update_at));
+    memos = memos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
   } catch (error) {
     console.log(error);
   }
