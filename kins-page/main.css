@@ -114,15 +114,11 @@ a {
   overflow: scroll;
 }
 
-.sidebar-container:hover {
+.sidebar-container.open {
   transform: translateX(0);
 }
-.sidebar-container:hover .arrow i {
+.sidebar-container.open .arrow i {
   transform: rotate(180deg);
-}
-
-.sidebar-container:left {
-  transform: translateX(-200px);
 }
 
 .sidebar-container .arrow {

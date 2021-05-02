@@ -5,6 +5,8 @@ const headerEl = document.getElementById("header");
 const sidebarEl = document.getElementById("sidebar");
 const contentEl = document.getElementById("content");
 const siteTitleEl = document.getElementById("site-title");
+const sidebarArrowEl = document.getElementById("sidebar-arrow");
+const sidebarContainerEl = document.getElementById("sidebar-container");
 
 const bodyEl = document.getElementById("body");
 
@@ -125,6 +127,13 @@ siteTitleEl.addEventListener("click", () => {
     left: 0,
     behavior: "smooth",
   });
+});
+sidebarArrowEl.addEventListener("click", () => {
+  if (sidebarContainerEl.classList.contains("open")) {
+    sidebarContainerEl.classList.remove("open");
+  } else {
+    sidebarContainerEl.classList.add("open");
+  }
 });
 
 window.addEventListener("scroll", (e) => {

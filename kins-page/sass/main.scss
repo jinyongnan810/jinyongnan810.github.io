@@ -78,7 +78,7 @@ a {
   height: 100vh;
   overflow: scroll;
 }
-.sidebar-container:hover {
+.sidebar-container.open {
   transform: translateX(0);
   .arrow {
     i {
@@ -86,9 +86,9 @@ a {
     }
   }
 }
-.sidebar-container:left {
-  transform: translateX(-200px);
-}
+// .sidebar-container:left {
+//   transform: translateX(-200px);
+// }
 .sidebar-container .arrow {
   display: block;
   background-color: rgba(0, 0, 0, 0.6);
