@@ -1,15 +1,15 @@
-const MarkdownIt = require('markdown-it');
-var hljs = require('highlight.js');
+const MarkdownIt = require("markdown-it");
+var hljs = require("highlight.js");
 // pull doms
-const headerEl = document.getElementById('header');
-const sidebarEl = document.getElementById('sidebar');
-const contentEl = document.getElementById('content');
-const siteTitleEl = document.getElementById('site-title');
+const headerEl = document.getElementById("header");
+const sidebarEl = document.getElementById("sidebar");
+const contentEl = document.getElementById("content");
+const siteTitleEl = document.getElementById("site-title");
 
-const bodyEl = document.getElementById('body');
+const bodyEl = document.getElementById("body");
 
 // consts
-const host = 'https://kins-memo.herokuapp.com/';
+const host = "https://us-central1-mymemo-98f76.cloudfunctions.net/mymemo";
 
 // vars
 let memos = [];
@@ -20,9 +20,9 @@ const checkTheme = () => {
   const date = new Date();
   const hour = date.getHours();
   if (hour > 6 && hour < 18) {
-    bodyEl.classList.add('light');
+    bodyEl.classList.add("light");
   } else {
-    bodyEl.classList.add('dark');
+    bodyEl.classList.add("dark");
   }
   setTimeout(() => {
     checkTheme();
@@ -31,21 +31,20 @@ const checkTheme = () => {
 checkTheme();
 
 // get initial memo
-const showFirst = +window.location.search.replace(/\?id=/, '');
+const showFirst = +window.location.search.replace(/\?id=/, "");
 
 let md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight: function(str, lang) {
+  highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str).value;
-      } catch (e) {
-      }
+      } catch (e) {}
     }
 
-    return '';  // use external default escaping
+    return ""; // use external default escaping
   },
 });
 
@@ -53,7 +52,7 @@ let md = new MarkdownIt({
 // fetch data
 const fetchData = async () => {
   try {
-    const res = await fetch(`${host}memos`);
+    const res = await fetch(`${host}/api/memo/list`);
     memos = await res.json();
     memos = memos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
   } catch (error) {
@@ -68,15 +67,15 @@ const init = async () => {
 
   memos.forEach((memo, index) => {
     // create dom
-    const newEl = document.createElement('div');
-    newEl.className = 'title';
+    const newEl = document.createElement("div");
+    newEl.className = "title";
     newEl.id = `title-${memo.id}`;
-    newEl.setAttribute('data-index', index);
+    newEl.setAttribute("data-index", index);
     newEl.innerText = memo.title;
     memoEls.push(newEl);
     sidebarEl.appendChild(newEl);
-    newEl.addEventListener('click', (e) => {
-      setCurrent(memos[+e.target.getAttribute('data-index')]);
+    newEl.addEventListener("click", (e) => {
+      setCurrent(memos[+e.target.getAttribute("data-index")]);
     });
   });
   if (showFirst) {
@@ -95,41 +94,42 @@ const init = async () => {
 const setCurrent = (memo) => {
   headerEl.innerText = memo.title;
   contentEl.innerHTML = md.render(memo.content);
-  const pre = document.querySelector('.current');
-  if (pre) pre.classList.remove('current');
+  const pre = document.querySelector(".current");
+  if (pre) pre.classList.remove("current");
   const current = document.getElementById(`title-${memo.id}`);
-  current.classList.add('current');
+  current.classList.add("current");
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: 'smooth',
+    behavior: "smooth",
   });
 };
 // init renderer
 const initRenderer = () => {
   var defaultRender =
-      md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
-        return self.renderToken(tokens, idx, options);
-      };
+    md.renderer.rules.link_open ||
+    function (tokens, idx, options, env, self) {
+      return self.renderToken(tokens, idx, options);
+    };
 
-  md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
-    tokens[idx].attrPush(['target', '_blank']);
+  md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+    tokens[idx].attrPush(["target", "_blank"]);
     return defaultRender(tokens, idx, options, env, self);
   };
 };
 
 // event handlers
-siteTitleEl.addEventListener('click', () => {
+siteTitleEl.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: 'smooth',
+    behavior: "smooth",
   });
 });
 
-window.addEventListener('scroll', e => {
+window.addEventListener("scroll", (e) => {
   const isMinimum = window.scrollY > 250;
-  const height = isMinimum ? 50 : (300 - window.scrollY);
+  const height = isMinimum ? 50 : 300 - window.scrollY;
   headerEl.style.height = `${height}px`;
   headerEl.style.lineHeight = `${height}px`;
   if (window.scrollY > 175) {
