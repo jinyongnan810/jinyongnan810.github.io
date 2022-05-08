@@ -11,7 +11,7 @@ const sidebarContainerEl = document.getElementById("sidebar-container");
 const bodyEl = document.getElementById("body");
 
 // consts
-const host = "https://us-central1-mymemo-98f76.cloudfunctions.net/mymemo";
+const memoProvider = `https://firestore.googleapis.com/v1/projects/mymemo-98f76/databases/(default)/documents/memos?orderBy=updatedAt desc`;
 
 // vars
 let memos = [];
@@ -54,9 +54,26 @@ let md = new MarkdownIt({
 // fetch data
 const fetchData = async () => {
   try {
-    const res = await fetch(`${host}/api/memo/list`);
-    memos = await res.json();
-    memos = memos.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    const res = await fetch(`${memoProvider}`);
+    const data = await res.json();
+    const documents = data["documents"];
+    const memosParsed = documents.map((doc) => {
+      return {
+        id: doc["name"].toString().split("/").pop(),
+        userId: doc["fields"]["userId"]["stringValue"],
+        title: doc["fields"]["title"]["stringValue"],
+        content: doc["fields"]["content"]["stringValue"],
+        createdAt: Number.parseInt(
+          doc["fields"]["createdAt"]["integerValue"].toString()
+        ),
+        updatedAt: Number.parseInt(
+          doc["fields"]["updatedAt"]["integerValue"].toString()
+        ),
+      };
+    });
+    memos = memosParsed.sort(
+      (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+    );
   } catch (error) {
     console.log(error);
   }
