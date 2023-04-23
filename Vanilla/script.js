@@ -85,6 +85,7 @@ const addProjectToDOM = () => {
         <div class='box' data-link='./${project.link}/index.html'>
             <img src='${project.img}'/>
             <div class='title'>${project.name}</div>
+            <button class='view-repo-btn' data-link="${project.link}">View Repo</button>
         </div>
     `
     )
@@ -94,6 +95,19 @@ const addProjectToDOM = () => {
   boxes.forEach((box) => {
     box.addEventListener("click", () => {
       window.open(box.getAttribute("data-link"), "__blank");
+    });
+  });
+  const viewRepoBtns = document.querySelectorAll(".view-repo-btn");
+  viewRepoBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(
+        `https://github.com/jinyongnan810/jinyongnan810.github.io/tree/master/Vanilla/${btn.getAttribute(
+          "data-link"
+        )}`,
+        "_blank"
+      );
     });
   });
 };
