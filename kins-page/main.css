@@ -4,13 +4,14 @@
   background-color: #f9fafb;
   color: #000;
 }
-.light h1:not(.site-title),
+.light h1:not(.site-title):not(.site-link-title),
 .light h2,
 .light h3,
 .light h4,
 .light h5 {
   box-shadow: 0px 6px 3px -3px rgba(0, 0, 0, 0.3);
 }
+.light .site-link-title,
 .light .site-title {
   color: #000;
 }
@@ -22,13 +23,14 @@
   background-color: #120a31;
   color: #fff;
 }
-.dark h1:not(.site-title),
+.dark h1:not(.site-title):not(.site-link-title),
 .dark h2,
 .dark h3,
 .dark h4,
 .dark h5 {
   box-shadow: 0px 6px 3px -3px rgba(255, 255, 255, 0.3);
 }
+.dark .site-link-title,
 .dark .site-title {
   color: #fff;
 }
@@ -49,7 +51,7 @@ body {
   justify-content: center;
 }
 
-h1:not(.site-title),
+h1:not(.site-title):not(.site-link-title),
 h2,
 h3,
 h4,
@@ -64,7 +66,7 @@ li {
   list-style-image: url("./pen.png");
 }
 
-a {
+a:not(.site-link-title) {
   color: goldenrod;
 }
 
@@ -74,6 +76,18 @@ a {
   position: fixed;
   top: 10px;
   left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  box-sizing: 0;
+}
+
+.site-link-title {
+  font-family: "Piedra", cursive;
+  margin: 0;
+  position: fixed;
+  top: 10px;
+  right: 10px;
   font-size: 20px;
   cursor: pointer;
   z-index: 2;
@@ -214,11 +228,9 @@ a:hover {
   .content {
     width: 80%;
   }
-
   img {
     max-width: 80%;
   }
-
   .header {
     font-size: 50px;
   }

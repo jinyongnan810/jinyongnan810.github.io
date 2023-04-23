@@ -16,13 +16,14 @@ $sidebar-transition: 0.5s;
   .#{$name} {
     background-color: $bg;
     color: $text;
-    h1:not(.site-title),
+    h1:not(.site-title):not(.site-link-title),
     h2,
     h3,
     h4,
     h5 {
       box-shadow: $shadow;
     }
+    .site-link-title,
     .site-title {
       color: $text;
     }

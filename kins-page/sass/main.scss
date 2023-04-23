@@ -20,7 +20,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-h1:not(.site-title),
+h1:not(.site-title):not(.site-link-title),
 h2,
 h3,
 h4,
@@ -33,7 +33,7 @@ h5 {
 li {
   list-style-image: url("./pen.png");
 }
-a {
+a:not(.site-link-title) {
   color: goldenrod;
 }
 .site-title {
@@ -42,6 +42,17 @@ a {
   position: fixed;
   top: 10px;
   left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  box-sizing: 0;
+}
+.site-link-title {
+  font-family: "Piedra", cursive;
+  margin: 0;
+  position: fixed;
+  top: 10px;
+  right: 10px;
   font-size: 20px;
   cursor: pointer;
   z-index: 2;
