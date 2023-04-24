@@ -1,6 +1,11 @@
 const container = document.getElementById("container");
 
 const projects = [
+  {
+    name: "Scroll Animation",
+    link: "Scroll-Animation",
+    img: "./imgs/scroll-animation.png",
+  },
   { name: "Breakout Game", link: "Breakout-Game", img: "./imgs/breakout.png" },
   {
     name: "Memory Cards",
