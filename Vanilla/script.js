@@ -2,6 +2,11 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Rotating Navigation",
+    link: "Rotating-Navigation",
+    img: "./imgs/rotating-navigation.png",
+  },
+  {
     name: "Progress Steps",
     link: "Progress-Steps",
     img: "./imgs/progress-steps.png",
