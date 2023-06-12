@@ -2,6 +2,11 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Blurry Loading",
+    link: "Blurry-Loading",
+    img: "./imgs/blurry-loading.png",
+  },
+  {
     name: "Hidden Search",
     link: "Hidden-Search",
     img: "./imgs/hidden-search.png",
