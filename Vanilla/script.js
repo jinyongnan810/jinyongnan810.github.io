@@ -2,6 +2,11 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Split Landing Page",
+    link: "Split-Landing-Page",
+    img: "./imgs/split-landing-page.png",
+  },
+  {
     name: "Blurry Loading",
     link: "Blurry-Loading",
     img: "./imgs/blurry-loading.png",
