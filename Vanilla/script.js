@@ -2,6 +2,11 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Form Wave Animation",
+    link: "Form-Wave-Animation",
+    img: "./imgs/form-wave-animation.png",
+  },
+  {
     name: "Split Landing Page",
     link: "Split-Landing-Page",
     img: "./imgs/split-landing-page.png",
