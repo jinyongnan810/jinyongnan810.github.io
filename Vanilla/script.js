@@ -2,6 +2,11 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Sound Board",
+    link: "Sound-Board",
+    img: "./imgs/sound-board.png",
+  },
+  {
     name: "Form Wave Animation",
     link: "Form-Wave-Animation",
     img: "./imgs/form-wave-animation.png",
