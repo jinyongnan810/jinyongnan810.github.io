@@ -2,6 +2,11 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Random Choice Picker",
+    link: "Random-Choice-Picker",
+    img: "./imgs/random-choice-picker.png",
+  },
+  {
     name: "FAQ Collapse",
     link: "FAQ-Collapse",
     img: "./imgs/faq-collapse.png",
