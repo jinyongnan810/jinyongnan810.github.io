@@ -2,6 +2,22 @@ const container = document.getElementById("container");
 
 const projects = [
   {
+    name: "Mine Sweeper",
+    link: "Mine-Sweeper",
+    img: "./imgs/mine-sweeper.png",
+  },
+  { name: "Sass Demo", link: "Sass-Demo", img: "./imgs/sass-demo.png" },
+  {
+    name: "Winbox Landing Page",
+    link: "Winbox-Landing-Page",
+    img: "./imgs/winbox-landing-page.png",
+  },
+  {
+    name: "Tesla Configuration",
+    link: "Tesla-Configuration",
+    img: "./imgs/tesla-configuration.png",
+  },
+  {
     name: "Random Choice Picker",
     link: "Random-Choice-Picker",
     img: "./imgs/random-choice-picker.png",
@@ -124,17 +140,6 @@ const projects = [
     name: "Sortable List",
     link: "Sortable-List",
     img: "./imgs/sortable-list.png",
-  },
-  {
-    name: "Mine Sweeper",
-    link: "Mine-Sweeper",
-    img: "./imgs/mine-sweeper.png",
-  },
-  { name: "Sass Demo", link: "Sass-Demo", img: "./imgs/sass-demo.png" },
-  {
-    name: "Winbox Landing Page",
-    link: "Winbox-Landing-Page",
-    img: "./imgs/winbox-landing-page.png",
   },
 ];
 
